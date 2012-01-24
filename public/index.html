@@ -1,11 +1,16 @@
 <!doctype html>
 
-<!--[if lt IE 7]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
-  <head>
+<!--[if lt IE 7]>
+<html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" class="no-js"> <!--<![endif]-->
+<head>
     <meta charset="utf-8">
 
     <title>Backbone Tunes</title>
@@ -20,20 +25,25 @@
     <script src="js/vendor/backbone.js"></script>
     <script src="js/Tunes.js"></script>
 
+    <script type="text/template" id="library-template">
+        <h1>Music Library</h1>
+        <ul class="albums"></ul>
+    </script>
+    
     <script type="text/template" id="album-template">
-      <span class="album-title"><%= title %></span>
-      <span class="artist-name"><%= artist %></span>
-      <ol class="tracks">
-        <% _.each(tracks, function(track) { %>
-          <li><%= track.title %></li>
-        <% }); %>
-      </ol>
+        <span class="album-title"><%= title %></span>
+        <span class="artist-name"><%= artist %></span>
+        <ol class="tracks">
+            <% _.each(tracks, function(track) { %>
+            <li><%= track.title %></li>
+            <% }); %>
+        </ol>
     </script>
 
-  </head>
+</head>
 
-  <body>
-    <div id="container">
-    </div>
-  </body>
+<body>
+<div id="container">
+</div>
+</body>
 </html>
