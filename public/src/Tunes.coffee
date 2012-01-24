@@ -17,6 +17,8 @@
     model: Album
     url: '/albums'
 
+  window.library = new Albums()
+
   window.AlbumView = Backbone.View.extend
     tagName: 'li'
     className: 'album'  
@@ -49,5 +51,23 @@
         view = new LibraryAlbumView {model: album, collection: collection }
         $albums.append(view.render().el)
       @
+
+  window.BackboneTunes = Backbone.Router.extend
+    routes: {"": 'home','blank': 'blank' }
+
+    initialize: ()->
+      @.libraryView = new LibraryView {collection: window.library}
+
+    home: () ->
+      $container = $('#container')
+      $container.empty()
+      $container.append(@.libraryView.render().el)
+
+    blank: () ->
+      $container.empty()
+
+  $ ->
+    window.App = new BackboneTunes();
+    Backbone.history.start()
 
 )(jQuery)

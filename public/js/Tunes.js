@@ -19,6 +19,7 @@
     model: Album,
     url: '/albums'
   });
+  window.library = new Albums();
   window.AlbumView = Backbone.View.extend({
     tagName: 'li',
     className: 'album',
@@ -35,7 +36,7 @@
     }
   });
   window.LibraryAlbumView = AlbumView.extend({});
-  return window.LibraryView = Backbone.View.extend({
+  window.LibraryView = Backbone.View.extend({
     tagName: 'section',
     className: 'library',
     initialize: function() {
@@ -58,5 +59,29 @@
       });
       return this;
     }
+  });
+  window.BackboneTunes = Backbone.Router.extend({
+    routes: {
+      "": 'home',
+      'blank': 'blank'
+    },
+    initialize: function() {
+      return this.libraryView = new LibraryView({
+        collection: window.library
+      });
+    },
+    home: function() {
+      var $container;
+      $container = $('#container');
+      $container.empty();
+      return $container.append(this.libraryView.render().el);
+    },
+    blank: function() {
+      return $container.empty();
+    }
+  });
+  return $(function() {
+    window.App = new BackboneTunes();
+    return Backbone.history.start();
   });
 })(jQuery);
